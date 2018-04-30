@@ -7,7 +7,6 @@ import java.util.List;
 public class Problem {
 	static List<Integer> intList = Collections.synchronizedList(new ArrayList<Integer>());
 	public static void main(String[] args) {
-		intList.add(5);
 		
 		synchronized(intList) {
 			Thread t1 = new Consumer();

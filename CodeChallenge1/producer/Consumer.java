@@ -15,7 +15,6 @@ public class Consumer extends Thread {
 				for (int i = 0; i<Problem.intList.size();i++) {
 					System.out.println("Removed: " + Problem.intList.get(i));
 					Problem.intList.remove(Problem.intList.get(i));
-					Producer.currentThread().notify();
 				}
 				this.randomNumber--;
 					
