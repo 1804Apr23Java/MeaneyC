@@ -1,0 +1,7 @@
+2018-04-27 18:22:33 WARN  root:13 - warn message
+2018-04-27 18:22:33 ERROR root:14 - error message
+2018-04-27 18:22:33 FATAL root:15 - fatal message
+2018-04-27 18:22:33 FATAL root:19 - / by zero
+java.lang.ArithmeticException: / by zero
+	at com.revature.logging.Driver.divide(Driver.java:22)
+	at com.revature.logging.Driver.main(Driver.java:12)
