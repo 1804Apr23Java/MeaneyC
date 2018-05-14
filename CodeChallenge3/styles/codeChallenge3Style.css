@@ -11,15 +11,6 @@ h1, h2, h3, a, label, p, li, div{
 	color:blue;
 }
 
-#homepageimg {
-	text-align: center;
-}
-
-#homepageimg2 {
-	width: 320px;
-	height: 400px;
-}
-
 .nav {
 	padding: 5px;
 	margin: 5px;
@@ -30,10 +21,6 @@ h1, h2, h3, a, label, p, li, div{
 	margin:auto;
 	margin-top: 25px;
   }
-a:hover {
-	color: white;
-}
-
 .formlabel {
 	display: inline-block;
 	width: 80px;
@@ -47,9 +34,4 @@ textarea {
 
 button {
 	margin-left: 100px;
-}
-
-.mediavampire {
-	height: 300px;
-	width: 200px;
 }

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DOM</title>
+</head>
+<body>
+    <div>
+   	 <div>
+   		 <h3>
+   			 Sum: <span id="sum"></span>
+   		 </h3>
+   		 <h5 id="currentTime"></h5>
+   	 </div>
+   	 <div>
+   		 <h1>
+   			 United <span data-customAttr="USA">States</span> of America (<span>USA</span>)
+   		 </h1>
+   		 <div>
+   			 <a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click Here</a><a>Click
+   				 Here</a>
+   		 </div>
+   		 <a>Click Here</a> <a>Click <span>Here1</span></a> <a>Click Here</a>
+   		 <div>
+   			 <select name="colors">
+   				 <option value="green">Green</option>
+   				 <option value="blue">Blue</option>
+   				 <option value="red" selected="selected">Red</option>
+   				 <option value="purple">Purple</option>
+   				 <option value="yellow" selected="selected">Yellow</option>
+   			 </select>
+   		 </div>
+   	 </div>
+   	 <p id="helloWorld">Hello, World!</p>
+   	 <div>
+   		 <table>
+   			 <tr>
+   				 <th>Name</th>
+   				 <th>Department</th>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">John</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Amy</td>
+   				 <td>Finance</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Austin</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Katie</td>
+   				 <td>Marketing</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName" data-customAttr="court">Courtney</td>
+   				 <td>Sales</td>
+   			 </tr>
+   			 <tr>
+   				 <td class="empName">Scout</td>
+   				 <td>Sales</td>
+   			 </tr>
+   		 </table>
+   	 </div>
+   	 <form id="firstForm">
+   		 <a>Click <span>Here2</span></a> <input type="text"
+   			 data-customAttr="7" /><br /> <input type="text" data-customAttr="24" /><br />
+   		 <input type="radio" name="favoriteAnimal" value="dog" />Dog<br /> <input
+   			 type="radio" name="favoriteColor" value="blue" />Blue<br /> <input
+   			 id="num1" class="nums" type="text" /><br /> <input type="radio"
+   			 name="favoriteAnimal" value="cat" />Cat<br /> <input type="radio"
+   			 name="favoriteColor" value="red" />Red<br /> <input type="radio"
+   			 name="favoriteAnimal" value="horse" />Horse<br /> <input
+   			 type="radio" name="favoriteAnimal" value="dolphin" />Dolphin<br /> <a>Click
+   			 <span>Here</span>
+   		 </a><br /> <input type="radio" name="favoriteAnimal" value="eagle" />Eagle<br />
+   		 <input type="radio" name="favoriteColor" value="green" />Green<br />
+   		 <input type="radio" name="favoriteColor" value="orange" />Orange<br />
+   		 <select name="hobbies">
+   			 <option value="photography">Photography</option>
+   			 <option value="football" selected="selected">Football</option>
+   			 <option value="kayaking" selected="selected">Kayaking</option>
+   			 <option value="hiking">Hiking</option>
+   			 <option value="programming" selected="selected">Programming</option>
+   		 </select> <input id="num2" class="nums" type="text" /> <select name="skills">
+   			 <option value="java">Java</option>
+   			 <option value="net">.NET</option>
+   			 <option value="dom" selected="selected">DOM</option>
+   			 <option value="html">HTML</option>
+   			 <option value="css">CSS</option>
+   			 <option value="javascript" selected="selected">Javascript</option>
+   		 </select>
+   	 </form>
+    </div>
+    <a>Click Here</a>
+    <a>Click <span data-customAttr="500">Here3</span></a>
+    <a>Click Here</a>
+	<script type="text/javascript">
+		var homework = {};
+		//TODO: Javascript homework
+		/*1. USA
+				Define function getUSA()
+
+				Find the html element that contains "USA".
+
+				Print that element's contents.*/
+		homework.getUSA = function() {
+			var element = document.querySelectorAll('[data-customAttr="USA"]');
+			console.log(element[0].innerHTML); // prints the text content in console
+		};
+		/*2. Sales
+
+		Define function getPeopleInSales()
+
+		Print the names of all the people in the sales department.*/
+		homework.getPeopleInSales = function() {
+			var element = document.querySelectorAll('td');
+			for(i = 0; i<element.length; i++){
+				if(element[i].innerHTML == "Sales") {
+					console.log(element[i-1].innerHTML);
+				}
+			}
+		};
+		/*3. Click Here
+
+		Define function getAnchorChildren()
+
+		Find all anchor elements with a <span> child.
+
+		Print the contents of <span>*/
+ 		homework.getAnchorChildren = function(){
+ 			var element = document.querySelectorAll('A>span');
+			for(i=0; i<element.length;i++){
+				console.log(element[i].innerHTML);
+			} 
+ 		};
+
+		homework.getAnchorChildren = function() {
+            anchorArray = document.getElementsByTagName("a");
+            for(i = 0; i < anchorArray.length; i++) {
+				var childArr = anchorArray[i].children;
+                    for (var j = 0; j < childArr.length; j++) {
+						if(childArr[j].tagName === "span");
+						console.log(childArr[j].innerHTML);
+					}
+			}
+		};
+		
+		/* 4. Hobbies
+		Define function getHobbies()	
+		Find all checked options in the 'skills' select element.
+
+		Print the value and the contents.*/
+		homework.getHobbies = function() {
+			var element = document.getElementsByName('skills');
+			for(i = 0; i < element.length; i++) {
+				var childArr = element[i].children;
+				for(var j = 0; j < childArr.length; j++) {
+					if(childArr[j].selected == true) {
+						console.log(childArr[j].value + childArr[j].innerHTML);
+					}
+				}
+			}
+		};
+
+		/*5. Custom Attribute
+
+		Define function getCustomAttribute()
+
+		Find all elements with "data-customAttr" attribute
+
+		Print the value of the attribute.
+
+		Print the element that has the attribute.*/
+		homework.getCustomAttribute = function() {
+			var element = document.querySelectorAll('[data-customAttr]');
+			for (var i = 0; i< element.length; i++){
+				console.log(element[i].getAttribute("data-customAttr"), element[i]);
+			}
+		}
+		
+		/*6. Sum Event
+
+		NOTE: Write unobtrusive Javascript
+
+		Regarding these elements:
+	
+		<input id="num1" class="nums" type="text"/>
+	
+		<input id="num2" class="nums" type="text"/>
+	
+		<h3>Sum: span id="sum"></span></h3>
+
+
+		Define onchange event handler.
+
+		Add <input> element values.
+
+		Put the sum in the <span> element.
+
+		If values cannot be added, put "Cannot add" in the <span> element*/
+		
+		homework.onChangeEventHandler = function() {
+			var element = document.querySelector('input[id = "num1"]');
+			var element2 = document.querySelector('input[id = "num2"]');
+			document.addEventListener('DOMContentLoaded', function (){
+				element.onchange = Sum;
+			}, false);
+			document.addEventListener('DOMContentLoaded', function (){
+				element2.onchange = Sum;
+			}, false);
+		};
+			
+		function Sum(event) {
+			var element = document.querySelector('input[id = "num1"]');
+			var element2 = document.querySelector('input[id = "num2"]');
+			sum = parseInt(element.value) + parseInt(element2.value);
+			p = document.createElement("P");
+			if(sum) {
+				p.innerHTML = sum;
+			}
+			else {
+				p.innerHTML = "Cannot add";
+			}
+			var span = document.querySelector('span[id = "sum"]');
+			span.appendChild(p);
+		};
+		
+		/*7. Skills Event
+
+		NOTE: Write unobtrusive Javascript
+
+		When user selects a skill, create an alert with a message similar to:
+	
+		"Are you sure CSS is one of your skills?"
+
+		NOTE: no alert should appear when user deselects a skill.*/
+
+		homework.skillsEvent = function() {
+			var element = document.querySelector('select[name = "skills"]');
+			element.addEventListener("change", AlertBm);
+		};
+			
+		function AlertBm() {
+			var element = document.querySelector('select[name = "skills"]');
+			alert("Are you sure "+ element.value +" is one of your skills?");
+		};
+
+		/*8. Favorite Color Event
+
+		NOTE: Write unobtrusive Javascript
+
+		NOTE: This is regarding the favoriteColor radio buttons.
+
+		When a user selects a color, create an alert with a message similar to:
+	
+		"So you like green more than blue now?"
+
+		In this example, green is the new value and blue is the old value.
+
+		Make the background color (of all favoriteColor radio buttons) 
+		the newly selected favoriteColor*/
+		homework.InputColor = function InputColor() {
+			element = document.querySelectorAll('input[name = "favoriteColor"]');
+			defaultColor = "";
+			for(i=0;i<element.length;i++){
+				element[i].addEventListener("change", ColorChange);
+			}
+		}
+		function ColorChange(event) {
+			if(!defaultColor){
+				alert("So you like " + event.target.value + " more now?");
+			}
+			else{
+				alert("So you like " + event.target.value + " more than " + defaultColor + " now?");
+			}
+			changeBackgroundColor(event.target.value);
+			defaultColor = event.target.value;
+		}
+
+		function changeBackgroundColor(color) {
+			element = document.querySelectorAll('input[name = "favoriteColor"]');
+			for(i=0;i<element.length;i++){
+				element[i].style.backgroundColor = color;			
+			}
+		}
+		
+		/*9. Show/Hide Event
+
+		NOTE: Write unobtrusive Javascript
+
+		When user hovers over an employees name:
+	
+		Hide the name if shown.
+		Show the name if hidden.*/
+		homework.hideEmployee = function () {
+			var element = document.querySelectorAll('[class = "empName"]');
+			for(i=0;i<element.length;i++){
+				element[i].addEventListener("mouseover", HideName);
+			}
+		};
+		function HideName(event) {
+			event.target.style.opacity = "0";
+			event.target.addEventListener("mouseover", ShowName);
+			event.target.removeEventListener("mouseover", HideName);
+		};
+		function ShowName(event) {
+			event.target.style.opacity = "1";
+			event.target.addEventListener("mouseover", HideName);
+			event.target.removeEventListener("mouseover", ShowName);
+		};
+
+		/*10. Current Time
+
+		Regarding this element:
+		<h5 id="currentTime"></h5>
+
+		Show the current time in this element in this format: 9:05:23 AM
+
+		The time should be accurate to the second without having to reload the page.*/
+		setInterval(function CurrentTime() {
+			myDate = new Date().toLocaleTimeString();			
+			document.querySelector('h5[id = "currentTime"]').innerHTML = myDate;
+		},1000);
+
+		//homework.CurrentTime();
+		/*11. Delay
+		Regarding this element:
+		s
+		<p id="helloWorld">Hello, World!</p>
+
+		Three seconds after a user clicks on this element, change the text to a random color.*/
+
+		homework.textColor = function() {
+			element = document.querySelector('p[id="helloWorld"]');
+			randomColor = 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')';
+			element.addEventListener("click", function (){ setTimeout(function colorChange() {element.style.color=randomColor;}, 3000)});
+		};
+
+		/*12. Walk the DOM
+
+		Define function walkTheDOM(node, func)
+
+		This function should traverse every node in the DOM. 
+		Use recursion.
+
+		On each node, call func(node).*/
+		function walkTheDOM(node, func) {
+			var childrenNodes = node.children;
+			func(node);
+			for(var i=0;i<childrenNodes.length;i++) {
+				walkTheDOM(childrenNodes[i], func);
+			}
+		}
+
+		function consoleLog(node) {
+			console.log(node.nodeName);
+		}
+    </script>
+</body>
+</html>
+
+
