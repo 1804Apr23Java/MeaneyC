@@ -1,6 +1,7 @@
 package daos;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,16 +13,17 @@ import classes.Reimbursement;
 import util.ConnectionUtil;
 
 public class EmployeeDaoImpl implements EmployeeDao{
+	public InputStream is;
 
 	@Override
 	public boolean submitReimbursementRequest(Employee emp) {
 		try(Connection con = ConnectionUtil.getConnectionFromFile()){
 			String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, STATE, RESOLVING_MANAGER) VALUES(?, ?, ?, ?)";
 			PreparedStatement statement = con.prepareStatement(sql);
-			statement.setInt(1, 3);
-			statement.setString(2, "https://imgur.com/gallery/N98BYni".toUpperCase());
-			statement.setInt(3, 1);
-			statement.setInt(4, 1);
+			statement.setInt(1, emp.employeeId);
+			statement.setString(2, emp.imageLocation);
+			statement.setInt(3, emp.state);
+			statement.setInt(4, emp.resolvingManager);
 			ResultSet rs = statement.executeQuery();
 			while (rs.next()){
 				con.close();

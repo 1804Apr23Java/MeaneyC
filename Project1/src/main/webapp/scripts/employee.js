@@ -16,6 +16,19 @@ function submitReimbursementRequests(url, func) {
 	xhr.send();
 }
 
+function viewPending(url, func) {
+
+	var xhr = new XMLHttpRequest()
+			|| new ActiveXObject("Microsoft.HTTPRequest");
+	xhr.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			func(this);
+		}
+	};
+	xhr.open("GET", url, true);
+	xhr.send();
+}
+
 function populateUser(xhr) {
 /*	if (xhr.responseText) {
 		console.log(xhr.responseText);
@@ -35,6 +48,10 @@ function populateUser(xhr) {
 function onclickSubmit() {
 	var element = document.querySelector('button[id = "submitRequests"]');
 	element.addEventListener("click", submitReimbursementRequests("http://localhost:8083/Project1/submitReimbursement", populateUser)
+);};
+function viewReimbursements() {
+	var element = document.querySelector('button[id = "viewPending"]');
+	element.addEventListener("click", viewPending("http://localhost:8083/Project1/viewPending", populateUser)
 );};
 	
 window.onload = function() {

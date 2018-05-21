@@ -1,15 +1,18 @@
 /**
  * 
- *//*function submitReimbursementRequests(url, func) {
+ */
+
+function sendAjaxGet(url, func) {
 
 	var xhr = new XMLHttpRequest()
 			|| new ActiveXObject("Microsoft.HTTPRequest");
+
 	xhr.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			func(this);
 		}
 	};
-	console.log("hi");
+
 	xhr.open("GET", url, true);
 	xhr.send();
 }
@@ -17,26 +20,20 @@
 function populateUser(xhr) {
 	if (xhr.responseText) {
 		console.log(xhr.responseText);
-		/*var res = JSON.parse(xhr.responseText);
+		var res = JSON.parse(xhr.responseText);
 		console.log(res);
 		if (res.username) {
 			document.getElementById("user").innerHTML = "you are logged in as "
 					+ res.username;
 		} else {
-			window.location = "http://localhost:8083/Project1/error";
+			window.location = "http://localhost:8083/Project1/index";
 		}
 	} else {
-		window.location = "http://localhost:8083/Project1/error";
+		window.location = "http://localhost:8083/Project1/index";
 	}
-};
-
-function onclickSubmit() {
-	console.log("second");
-	var element = document.querySelector('button[id = "submitRequests"]');
-	element.addEventListener("click", submitReimbursementRequests("http://localhost:8083/Project1/submitReimbursement", populateUser)
-);};
+}
 
 window.onload = function() {
-	console.log("first");
-	onclickSubmit();
-};*/
+	console.log("executed window.onload");
+	sendAjaxGet("http://localhost:8083/Project1/session", populateUser);
+}

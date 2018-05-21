@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,8 +32,11 @@ public class submitReimbursement extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		EmployeeDaoImpl edi = new EmployeeDaoImpl();
 		Employee emp = new Employee();
+		emp.employeeId = 5;
+		emp.imageLocation = "https://imgur.com/gallery/N98BYni".toUpperCase();
+		emp.state = 2;
+		emp.resolvingManager = 2;
 		boolean isTrue = edi.submitReimbursementRequest(emp);
-		System.out.println(isTrue);
 		if(isTrue) {
 			response.getWriter().write("true");
 		} else {

@@ -1,8 +1,6 @@
 package util;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,10 +18,11 @@ public class ConnectionUtil {
 		} catch (ClassNotFoundException e){
 			e.printStackTrace();
 		}
+		
 		//load connection credentials from file
 		//Properties prop = new Properties();
-		/*InputStream in = new FileInputStream(filename);
-		prop.load(in);*/
+		//InputStream 
+		//prop.load(filename);
 		//ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		//prop.load(loader.getResourceAsStream(filename));
 		//String url = prop.getProperty("url");
