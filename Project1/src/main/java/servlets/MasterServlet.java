@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daos.EmployeeDaoImpl;
+import util.RequestHelper;
+
 /**
  * Servlet implementation class MasterServlet
  */
@@ -35,7 +38,10 @@ public class MasterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("Hello");
+		RequestHelper rh = new RequestHelper();
+		EmployeeDaoImpl edi = EmployeeDaoImpl.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
+		response.sendRedirect(rh.checkLogin(request, edi));
 	}
 
 }

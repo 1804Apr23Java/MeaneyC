@@ -36,10 +36,12 @@
   <servlet>
     <servlet-name>MasterServlet</servlet-name>
     <servlet-class>servlets.MasterServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>MasterServlet</servlet-name>
     <url-pattern>/index</url-pattern>
+    
   </servlet-mapping>
    <servlet>
     <description></description>
