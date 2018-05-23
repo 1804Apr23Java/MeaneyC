@@ -30,7 +30,6 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter pw = response.getWriter();
-		request.getRequestDispatcher("index").include(request, response);
 		HttpSession session = request.getSession(false);
 		if (session != null) {
 			session.invalidate();
@@ -40,7 +39,7 @@ public class LogoutServlet extends HttpServlet {
 		pw.println("<a href=\"index\">Go back</a>");
 		pw.println("</body></html>");
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

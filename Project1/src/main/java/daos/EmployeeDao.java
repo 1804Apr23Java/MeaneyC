@@ -10,7 +10,7 @@ public interface EmployeeDao {
 	public int[] login(String username, String password) throws SQLException;
 	public boolean submitReimbursementRequest(Reimbursement re) throws SQLException;
 	public List<Reimbursement> viewReimbursements(Employee emp);
-	public Employee viewInformation(Employee emp);
+	public Employee viewInformation(Employee emp) throws SQLException;
 	public boolean updateInformation(Employee emp);
 	
 }

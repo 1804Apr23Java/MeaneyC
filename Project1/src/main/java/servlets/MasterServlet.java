@@ -38,13 +38,9 @@ public class MasterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("doPost");
 		RequestHelper rh = new RequestHelper();
-		System.out.println("After rh");
 		EmployeeDaoImpl edi = EmployeeDaoImpl.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
-		System.out.println("after edi");
 		response.sendRedirect(rh.checkLogin(request, edi));
-		System.out.println("end");
 	}
 
 }

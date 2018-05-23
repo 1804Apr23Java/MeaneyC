@@ -66,4 +66,14 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>viewInformation</display-name>
+    <servlet-name>viewInformation</servlet-name>
+    <servlet-class>servlets.viewInformation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>viewInformation</servlet-name>
+    <url-pattern>/info</url-pattern>
+  </servlet-mapping>
 </web-app>

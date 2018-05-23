@@ -37,12 +37,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public boolean submitReimbursementRequest(Reimbursement re) throws SQLException {
 		// try(Connection con = ConnectionUtil.getConnectionFromFile(is)){
-		String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, STATE, RESOLVING_MANAGER) VALUES(?, ?, ?, ?)";
+		String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, STATE) VALUES(?, ?, ?)";
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setInt(1, re.employeeId);
 		statement.setString(2, re.imageLocation);
-		statement.setInt(3, re.state);
-		statement.setInt(4, re.resolvingManager);
+		statement.setInt(3, 0);
 		ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 			con.close();
@@ -64,9 +63,18 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public Employee viewInformation(Employee emp) {
+	public Employee viewInformation(Employee emp) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID = ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, emp.employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			emp.employeeFirst = rs.getString("EMPLOYEE_FIRST");
+			emp.employeeLast = rs.getString("EMPLOYEE_LAST");
+			emp.employeeEmail = rs.getString("EMPLOYEE_EMAIL");
+		}
+		return emp;
 	}
 
 	@Override
@@ -87,30 +95,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		int loginId;
 		int isManager;
 		if(rs.next()) {
-			System.out.println("how did it not get in here?");
 			loginId = rs.getInt("LOGIN_ID");
-			System.out.println("after getting login: "+loginId);
 			isManager = rs.getInt("ISMANAGER");
-			System.out.println("after getting ismanager: "+isManager);
 			int id = 0;
 			if(isManager == 1) {
-				System.out.println("Before manager select");
 				String sql2 = "SELECT MANAGER_ID FROM MANAGER WHERE LOGIN_ID = ?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, loginId);
 				ResultSet rs2 = pstmt2.executeQuery();
-				System.out.println("did manager select work: "+rs2.next());
 				if(rs2.next()) {
 					id = rs2.getInt("MANAGER_ID");
 				}
 			} else {
-				System.out.println("before employee select");
 				System.out.println("loginId = "+loginId);
 				String sql2 = "SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE LOGIN_ID = ?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, loginId);
 				ResultSet rs2 = pstmt2.executeQuery();
-				System.out.println("did employee select work: "+rs2.next());
 				if(rs2.next()) {
 					id = rs2.getInt("EMPLOYEE_ID");
 				}
