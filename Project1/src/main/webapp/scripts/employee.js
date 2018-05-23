@@ -12,8 +12,22 @@ function submitReimbursementRequests(url, func) {
 			func(this);
 		}
 	};
-	xhr.open("GET", url, true);
-	xhr.send();
+
+	xhr.open("POST", url, true);
+	//var obj = {employeeId : 5, imageLocation : "https://imgur.com/gallery/N98BYni", state : 1, resolvingManager : 2 }
+	//var json = JSON.stringify(obj);
+	//xhr.setRequestHeader('Content-type', 'application/json');//; charset=utf-8');
+	//xhr.setRequestHeader("Content-type", "text/html");
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	;
+	xhr.send("employeeId="+document.querySelector('input[id="employeeId"]').
+			value+"&imageLocation="+document.querySelector('input[id="imageLocation"]').
+			value+"&state="+document.querySelector('input[id="state"]').
+			value+"&resolvingManager="+document.querySelector('input[id="resolvingManager"]').
+			value);
+	//xhr.send('test = '+obj);
+	//xhr.send("test = "+obj);
+	//xhr.send(json);
 }
 
 function viewPending(url, func) {
@@ -28,8 +42,11 @@ function viewPending(url, func) {
 	xhr.open("GET", url, true);
 	xhr.send();
 }
-
+function doTheSubmitting() {
+	submitReimbursementRequests("http://localhost:8083/Project1/submitReimbursement", populateUser);
+}
 function populateUser(xhr) {
+
 /*	if (xhr.responseText) {
 		console.log(xhr.responseText);
 		var res = JSON.parse(xhr.responseText);
@@ -47,7 +64,7 @@ function populateUser(xhr) {
 
 function onclickSubmit() {
 	var element = document.querySelector('button[id = "submitRequests"]');
-	element.addEventListener("click", submitReimbursementRequests("http://localhost:8083/Project1/submitReimbursement", populateUser)
+	element.addEventListener("click", doTheSubmitting
 );};
 function viewReimbursements() {
 	var element = document.querySelector('button[id = "viewPending"]');

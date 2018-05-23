@@ -7,7 +7,25 @@
 
 </head>
 <body>
-	<button type="button" id="submitRequests">submit requests</button>
+	<form action="/Project1/employee" method="post">
+  <div class="form-group">
+    <label for="employeeId">employee Id:</label>
+    <input type="text" class="form-control" id="employeeId">
+  </div>
+  <div class="form-group">
+    <label for="imageLocation">Image Location:</label>
+    <input type="text" class="form-control" id="imageLocation">
+  </div>
+  <div class="form-group">
+    <label for="state">state:</label>
+    <input type="text" class="form-control" id="state">
+  </div>
+  <div class="form-group">
+    <label for="resolvingManager">Resolving Manager:</label>
+    <input type="text" class="form-control" id="resolvingManager">
+  </div>
+  <button type="submit" class="btn btn-default" id="submitRequests">Submit</button>
+</form>
 	<button type="button" id="viewPending">view pending</button>
 	
 </body>

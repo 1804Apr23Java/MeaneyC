@@ -41,7 +41,7 @@ public class MasterServlet extends HttpServlet {
 		System.out.println("Hello");
 		RequestHelper rh = new RequestHelper();
 		EmployeeDaoImpl edi = EmployeeDaoImpl.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
-		response.sendRedirect(rh.checkLogin(request, edi));
+		//response.sendRedirect(rh.checkLogin(request, edi));
 	}
 
 }
