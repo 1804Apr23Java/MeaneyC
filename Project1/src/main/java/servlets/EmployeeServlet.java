@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class EmployeeServlet
@@ -27,8 +28,15 @@ public class EmployeeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher rd = request.getRequestDispatcher("views/employee.html");
-		rd.forward(request, response);	}
+		HttpSession session = request.getSession();
+		if(session.getAttribute("employeeId") != null) {
+			RequestDispatcher rd = request.getRequestDispatcher("views/employee.html");
+			rd.forward(request, response);	}
+		else {
+			session.setAttribute("problem", "incorrect password");
+			response.sendRedirect("index");
+		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

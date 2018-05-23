@@ -1,8 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,15 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ManagerServlet
+ * Servlet implementation class LogoutServlet
  */
-public class ManagerServlet extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,14 +27,18 @@ public class ManagerServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if(session.getAttribute("managerId") != null) {
-			RequestDispatcher rd = request.getRequestDispatcher("views/manager.html");
-			rd.forward(request, response);	}
-		else {
-			session.setAttribute("problem", "incorrect password");
-			response.sendRedirect("index");
+		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		PrintWriter pw = response.getWriter();
+		request.getRequestDispatcher("index").include(request, response);
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
 		}
+		pw.println("you are successfully logged out");
+		pw.println("</div>");
+		pw.println("<a href=\"index\">Go back</a>");
+		pw.println("</body></html>");
 	}
 
 	/**

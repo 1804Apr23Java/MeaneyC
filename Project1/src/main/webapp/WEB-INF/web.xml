@@ -41,9 +41,8 @@
   <servlet-mapping>
     <servlet-name>MasterServlet</servlet-name>
     <url-pattern>/index</url-pattern>
-    
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <description></description>
     <display-name>submitReimbursement</display-name>
     <servlet-name>submitReimbursement</servlet-name>
@@ -57,4 +56,14 @@
     <error-code>404</error-code>
     <location>/error</location>
   </error-page>
+  <servlet>
+    <description></description>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>servlets.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
 </web-app>

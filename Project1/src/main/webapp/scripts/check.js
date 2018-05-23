@@ -26,10 +26,10 @@ function populateUser(xhr) {
 			document.getElementById("user").innerHTML = "you are logged in as "
 					+ res.username;
 		} else {
-			window.location = "http://localhost:8083/Project1/index";
+			window.location = "http://localhost:8083/Projec1/login";
 		}
 	} else {
-		window.location = "http://localhost:8083/Project1/index";
+		window.location = "http://localhost:8083/Project1/login";
 	}
 }
 
