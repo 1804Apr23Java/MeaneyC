@@ -116,4 +116,24 @@
     <servlet-name>ResetServlet</servlet-name>
     <url-pattern>/reset</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewPendingServlet</display-name>
+    <servlet-name>ViewPendingServlet</servlet-name>
+    <servlet-class>servlets.ViewPendingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewPendingServlet</servlet-name>
+    <url-pattern>/mpending</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewResolvedServlet</display-name>
+    <servlet-name>ViewResolvedServlet</servlet-name>
+    <servlet-class>servlets.ViewResolvedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewResolvedServlet</servlet-name>
+    <url-pattern>/mresolved</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -12,9 +12,7 @@ public class RequestHelper {
 
 	public String checkLogin(HttpServletRequest req, EmployeeDaoImpl edi) throws IOException {
 		int[] arr = null;
-		System.out.println("checkLogin");
 		HttpSession session = req.getSession();
-		System.out.println("after Session");
 		try {
 			arr = edi.login(req.getParameter("username"), req.getParameter("password"));
 		} catch (SQLException e) {

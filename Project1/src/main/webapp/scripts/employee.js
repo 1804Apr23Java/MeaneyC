@@ -119,7 +119,6 @@ function viewReimbursements(xhr) {
 	var splitResponse = xhr.responseText.split(":");
 	let row1 = document.createElement("TR");
 	for (var i = 0; i < splitResponse.length-1; i++) {
-		console.log(splitResponse[i]);
 		let cell = document.createElement("TD");
 		cell.innerHTML=splitResponse[i];
 		row1.appendChild(cell);
