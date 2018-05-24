@@ -304,9 +304,16 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setString(1, password);
 		pstmt.setString(2, username);
 		ResultSet rs = pstmt.executeQuery();
-		if (rs.next())
-			return true;
-		else
+		if (rs.next()) {
+			String sql2 = "DELETE RESETS WHERE USERNAME = ?";
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setString(1, username);
+			ResultSet rs2 = pstmt2.executeQuery();
+			if (rs2.next())
+				return true;
+			else
+				return false;
+		} else
 			return false;
 	}
 }

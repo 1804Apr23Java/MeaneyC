@@ -18,9 +18,8 @@
 		</div>
 		<button type="submit" class="btn btn-default" id="submitRequests">Submit</button>
 	</form>
-	<form action="logout">
-		<button type="submit" class="btn btn-default" id="logout">Logout</button>
-	</form>
+	<br><br>
+	
 	<button type="button" id="employeeInfo" name="employeeInfo"
 		onclick="sendAjax('info', viewInfo);">View Info</button>
 	<button type="button" id="viewResolved" name="viewResolved"
@@ -29,6 +28,7 @@
 	<button type="button" id="viewPending" name="viewPending"
 		onclick="sendAjax('pending', viewReimbursements);">View
 		Pending Reimbursements</button>
+	<br><br>
 	<form action="update" method="post">
 		<label for="first">New First Name:</label> <input type="text"
 			class="form-control" id="first" name="first"> <label
@@ -39,7 +39,11 @@
 		<button type="submit" class="btn btn-default" id="updateInfo"
 			name="updateInfo">Update Info</button>
 	</form>
-	
+	<br><br>
+	<form action="logout">
+		<button type="submit" class="btn btn-default" id="logout">Logout</button>
+	</form>
+
 </body>
 <script src="scripts/employee.js"></script>
 

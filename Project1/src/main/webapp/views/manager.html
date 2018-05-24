@@ -7,9 +7,7 @@
 
 </head>
 <body>
-	<form action="logout">
-		<button type="submit" class="btn btn-default" id="logout">Logout</button>
-	</form>
+	
 	<button type="button" id="viewPending" name="viewPending"
 		onclick="sendAjax('mpending', viewReimbursements);">View
 		Pending Reimbursements</button>
@@ -18,11 +16,13 @@
 		Resolved Reimbursements</button>
 	<button type="button" id="viewEmployees" name="viewEmployees"
 		onclick="sendAjax('all', viewEmployees);">View All Employees</button>
+	<br><br>
 	<label for="singleEmp">Employee Id:</label>
 	<input type="text" class="form-control" id="singleEmp" name="singleEmp">
 	<button type="submit" id="single" name="single"
 		onclick="viewSingle('single', viewReimbursements)">View
 		Reimbursements of Employee</button>
+	<br><br>
 	<form action="alter" method="post">
 		<label for="requestId">Request Id:</label> <input type="text"
 			class="form-control" id="requestId" name="requestId"> <label
@@ -30,13 +30,14 @@
 			class="form-control" id="approve" name="approve">
 		<button type="submit" class="btn btn-default" id="alter" name="alter">Submit</button>
 	</form>
+	<br>
 	<form action="register" method="post">
 		<label for="empFirst">Employee First:</label> <input type="text"
 			class="form-control" id="empFirst" name="empFirst"> <label
 			for="empLast">Employee Last:</label> <input type="text"
 			class="form-control" id="empLast" name="empLast"> <label
 			for="empEmail">Employee Email:</label> <input type="text"
-			class="form-control" id="empEmail" name="empEmail"> <label
+			class="form-control" id="empEmail" name="empEmail"> <br><label
 			for="empUsername">Employee Username:</label> <input type="text"
 			class="form-control" id="empUsername" name="empUsername"> <label
 			for="empPassword">Employee Password:</label> <input type="password"
@@ -45,6 +46,10 @@
 			class="form-control" id="isManager" name="isManager">
 		<button type="submit" class="btn btn-default" id="register"
 			name="register">Register</button>
+	</form>
+	<br><br>
+	<form action="logout">
+		<button type="submit" class="btn btn-default" id="logout">Logout</button>
 	</form>
 
 </body>
