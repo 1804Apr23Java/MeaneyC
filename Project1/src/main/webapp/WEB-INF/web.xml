@@ -76,4 +76,14 @@
     <servlet-name>viewInformation</servlet-name>
     <url-pattern>/info</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResolvedReimbursementsServlet</display-name>
+    <servlet-name>ResolvedReimbursementsServlet</servlet-name>
+    <servlet-class>servlets.ResolvedReimbursementsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResolvedReimbursementsServlet</servlet-name>
+    <url-pattern>/resolved</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,6 +1,7 @@
 package classes;
 
 public class Reimbursement {
+	public int reimbursementId;
 	public int employeeId;
 	public int amount;
 	public String imageLocation;

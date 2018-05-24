@@ -57,9 +57,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public List<Reimbursement> viewReimbursements(Employee emp) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> viewReimbursements(Employee emp) throws SQLException {
+		String sql = "SELECT * FROM REIMBURSEMENTS WHERE EMPLOYEE_ID = ? AND STATE = 1 OR STATE = 2";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, emp.employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		List<Reimbursement> re = new ArrayList<Reimbursement>();
+		while(rs.next()) {
+			Reimbursement rem = new Reimbursement();
+			rem.reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+			rem.amount = rs.getInt("AMOUNT");
+			rem.imageLocation = rs.getString("IMAGE_LOCATION");
+			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
+			re.add(rem);
+		}
+		return re;
 	}
 
 	@Override
@@ -122,5 +134,11 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return arr;
 		}return null;
 }
+
+	@Override
+	public List<Reimbursement> viewPending(Employee emp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

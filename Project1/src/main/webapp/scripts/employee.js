@@ -73,27 +73,49 @@ function populateUser(xhr) {
 	 */
 };
 
-/*function onclickSubmit() {
-	var element = document.querySelector('button[id = "submitRequests"]');
-	element.addEventListener("click", doTheSubmitting);
-};*/
+/*
+ * function onclickSubmit() { var element = document.querySelector('button[id =
+ * "submitRequests"]'); element.addEventListener("click", doTheSubmitting); };
+ */
 function viewInfo(xhr) {
 	var element = document.createElement("P");
-	element.innerHTML = "Name : "+JSON.parse(xhr.responseText).employeeFirst+ " " + JSON.parse(xhr.responseText).employeeLast +"<br>Email : "+JSON.parse(xhr.responseText).employeeEmail;
+	element.innerHTML = "Name : " + JSON.parse(xhr.responseText).employeeFirst
+			+ " " + JSON.parse(xhr.responseText).employeeLast + "<br>Email : "
+			+ JSON.parse(xhr.responseText).employeeEmail;
 	document.body.appendChild(element);
 }
 function viewReimbursements(xhr) {
-	
+
 	let table = document.createElement("TABLE");
 	let cell1 = document.createElement("TD");
 	let cell2 = document.createElement("TD");
 	let cell3 = document.createElement("TD");
-
+	let cell4 = document.createElement("TD");
 	let row = document.createElement("TR");
-	element.innerHTML = "Name : "+JSON.parse(xhr.responseText).employeeFirst+ " " + JSON.parse(xhr.responseText).employeeLast +"<br>Email : "+JSON.parse(xhr.responseText).employeeEmail;
+	cell1.innerHTML = "Reimbursement ID";
+	cell2.innerHTML = "Amount";
+	cell3.innerHTML = "Image Location";
+	cell4.innerHTML = "Resolving Manager";
 	row.appendChild(cell1);
+	row.appendChild(cell2);
+	row.appendChild(cell3);
+	row.appendChild(cell4);
+	table.appendChild(row);
+	var splitResponse = xhr.responseText.split(":");
+	let row1 = document.createElement("TR");
+	for (var i = 0; i < splitResponse.length-1; i++) {
+		console.log(splitResponse[i]);
+		let cell = document.createElement("TD");
+		cell.innerHTML=splitResponse[i];
+		row1.appendChild(cell);
+		if((i+1)%4 == 0) {
+			table.appendChild(row1);
+			row1 = document.createElement("TR");
+		}
+	}
+	document.body.appendChild(table);
 }
 
 window.onload = function() {
-	//onclickSubmit();
+	// onclickSubmit();
 }
