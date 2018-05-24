@@ -14,15 +14,15 @@ import classes.Reimbursement;
 import daos.ManagerDaoImpl;
 
 /**
- * Servlet implementation class ViewPendingServlet
+ * Servlet implementation class ViewSingle
  */
-public class ViewPendingServlet extends HttpServlet {
+public class ViewSingle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewPendingServlet() {
+    public ViewSingle() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,8 +42,9 @@ public class ViewPendingServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		ManagerDaoImpl mdi = ManagerDaoImpl.getManagerDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
 		List<Reimbursement> RemArr = new ArrayList<Reimbursement>();
+		int empId = Integer.parseInt(request.getParameter("empId"));
 		try {
-			RemArr = mdi.viewPendingRequests();
+			RemArr = mdi.viewEmployeeRequests(empId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,7 +56,6 @@ public class ViewPendingServlet extends HttpServlet {
 			response.getWriter().write(r.imageLocation+":");
 			response.getWriter().write(r.state+":");
 			response.getWriter().write(r.resolvingManager + ":");
-		}
-	}
+		}	}
 
 }

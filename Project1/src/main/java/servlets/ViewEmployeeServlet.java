@@ -10,19 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import classes.Employee;
 import classes.Reimbursement;
 import daos.ManagerDaoImpl;
 
 /**
- * Servlet implementation class ViewPendingServlet
+ * Servlet implementation class ViewEmployeeServlet
  */
-public class ViewPendingServlet extends HttpServlet {
+public class ViewEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewPendingServlet() {
+    public ViewEmployeeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,22 +41,20 @@ public class ViewPendingServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ManagerDaoImpl mdi = ManagerDaoImpl.getManagerDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
-		List<Reimbursement> RemArr = new ArrayList<Reimbursement>();
+		ManagerDaoImpl mdi = ManagerDaoImpl
+				.getManagerDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
+		List<Employee> EmpArr = new ArrayList<Employee>();
 		try {
-			RemArr = mdi.viewPendingRequests();
+			EmpArr = mdi.viewEmployees();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for(Reimbursement r : RemArr) {
-			response.getWriter().write(r.reimbursementId+":");
-			response.getWriter().write(r.employeeId+":");
-			response.getWriter().write(r.amount+":");
-			response.getWriter().write(r.imageLocation+":");
-			response.getWriter().write(r.state+":");
-			response.getWriter().write(r.resolvingManager + ":");
-		}
-	}
+		for (Employee e : EmpArr) {
+			response.getWriter().write(e.employeeId + ":");
+			response.getWriter().write(e.employeeFirst + ":");
+			response.getWriter().write(e.employeeLast + ":");
+			response.getWriter().write(e.employeeEmail + ":");
+		}	}
 
 }

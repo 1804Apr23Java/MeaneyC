@@ -7,16 +7,33 @@
 
 </head>
 <body>
-	<button type="button">Employee</button>
 	<form action="logout">
 		<button type="submit" class="btn btn-default" id="logout">Logout</button>
 	</form>
 	<button type="button" id="viewPending" name="viewPending"
 		onclick="sendAjax('mpending', viewReimbursements);">View
 		Pending Reimbursements</button>
-	<button type="button" id="viewPending" name="viewPending"
+	<button type="button" id="viewResolved" name="viewResolved"
 		onclick="sendAjax('mresolved', viewReimbursements);">View
 		Resolved Reimbursements</button>
+	<button type="button" id="viewEmployees" name="viewEmployees"
+		onclick="sendAjax('all', viewEmployees);">View All Employees</button>
+	<label for="singleEmp">Employee Id:</label>
+	<input type="text" class="form-control" id="singleEmp" name="singleEmp">
+	<button type="submit" id="single" name="single"
+		onclick="viewSingle('single', viewReimbursements)">View
+		Reimbursements of Employee</button>
+	<form action="alter" method="post">
+		<label for="requestId">Request Id:</label> <input type="text"
+			class="form-control" id="requestId" name="requestId"> <label
+			for="approve">(A)pprove or (D)eny:</label> <input type="text"
+			class="form-control" id="approve" name="approve">
+		<button type="submit" class="btn btn-default" id="alter"
+			name="alter">Submit</button>
+	</form>
+
 </body>
-<script src="scripts/manager.js"></script>
+<script src="scripts/manager.js">
+	
+</script>
 </html>

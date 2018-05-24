@@ -136,4 +136,34 @@
     <servlet-name>ViewResolvedServlet</servlet-name>
     <url-pattern>/mresolved</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewEmployeeServlet</display-name>
+    <servlet-name>ViewEmployeeServlet</servlet-name>
+    <servlet-class>servlets.ViewEmployeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewEmployeeServlet</servlet-name>
+    <url-pattern>/all</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewSingle</display-name>
+    <servlet-name>ViewSingle</servlet-name>
+    <servlet-class>servlets.ViewSingle</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewSingle</servlet-name>
+    <url-pattern>/single</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlterServlet</display-name>
+    <servlet-name>AlterServlet</servlet-name>
+    <servlet-class>servlets.AlterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlterServlet</servlet-name>
+    <url-pattern>/alter</url-pattern>
+  </servlet-mapping>
 </web-app>

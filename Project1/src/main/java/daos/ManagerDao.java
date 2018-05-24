@@ -12,6 +12,6 @@ public interface ManagerDao {
 	public List<Reimbursement> viewResolvedRequests() throws SQLException;
 	public List<Employee> viewEmployees() throws SQLException;
 	public List<Reimbursement> viewEmployeeRequests(int empId) throws SQLException;
-	public boolean manageRequests() throws SQLException; //approve and deny
+	public boolean manageRequests(int reqId, String approve, int managerId) throws SQLException; //approve and deny
 	
 }
