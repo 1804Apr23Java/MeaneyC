@@ -47,7 +47,7 @@ public class ResetPassword extends HttpServlet {
 			pw.println("</div>");
 			pw.println("<form action=\"password\" method=\"post\">");
 			pw.println("<label for=\"newPassword\">Password:</label>");
-			pw.println("<input type =\"text\" class=\"form-control\" id=\"newPassword\" name=\"newPassword\">");
+			pw.println("<input type =\"password\" class=\"form-control\" id=\"newPassword\" name=\"newPassword\">");
 			pw.println("<button type=\"submit\" class=\"btn btn-default\" id=\"password\" name=\"password\">Submit</button>");
 			pw.println("</form>");
 			pw.println("<a href=\"index\">Go back</a>");

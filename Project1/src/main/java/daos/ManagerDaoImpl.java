@@ -57,7 +57,6 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.state = rs.getInt("STATE");
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
-			rs.next();
 		}
 		return re;
 	}
@@ -77,7 +76,6 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.state = rs.getInt("STATE");
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
-			rs.next();
 		}
 		return re;
 	}
@@ -184,7 +182,6 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.state = rs.getInt("STATE");
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
-			//rs.next();
 		}
 		return re;
 	}
