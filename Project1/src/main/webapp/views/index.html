@@ -5,20 +5,28 @@
 <title>Index</title>
 <link rel="stylesheet" href="styles/moreCoolStyles.css">
 </head>
-<body>	
-<form action="index" method="POST">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" name="username" id="username">
-  </div>
-  <div class="form-group">
-    <label for="pwd">Password:</label>
-    <input type="password" class="form-control" name="password" id="password">
-  </div>
-  <input type="submit" value="login">
- <!-- <button type="submit" class="btn btn-default">Submit</button>-->
-</form>
+<body>
+	<form action="index" method="POST">
+		<div class="form-group">
+			<label for="username">Username:</label> <input type="text"
+				class="form-control" name="username" id="username">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Password:</label> <input type="password"
+				class="form-control" name="password" id="password">
+		</div>
+		<input type="submit" value="login">
+		<!-- <button type="submit" class="btn btn-default">Submit</button>-->
+	</form>
+	<form action="reset" method="post">
+		<label for="username2">Username:</label> <input type="text"
+			class="form-control" id="username2" name="username2">
+		<button type="submit" class="btn btn-default" id="reset" name="reset">Reset
+			Password</button>
+	</form>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>

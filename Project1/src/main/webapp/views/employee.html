@@ -8,24 +8,38 @@
 </head>
 <body>
 	<form action="submitReimbursement" method="post">
-  <div class="form-group">
-    <label for="amount">Amount:</label>
-    <input type="text" class="form-control" id="amount" name="amount">
-  </div>
-  <div class="form-group">
-    <label for="imageLocation">Image Location:</label>
-    <input type="text" class="form-control" id="imageLocation" name="imageLocation">
-  </div>
-  <button type="submit" class="btn btn-default" id="submitRequests">Submit</button>
-</form>
-<form action="logout">
-  <button type="submit" class="btn btn-default" id="logout">Logout</button>
-</form>
-	<button type="button" id="viewPending">view pending</button>
-<button type="button" id="employeeInfo" name="employeeInfo" onclick="sendAjax('info', viewInfo);">View Info</button>
-<button type="button" id="viewResolved" name="viewResolved" onclick="sendAjax('resolved', viewReimbursements);">View Resolved Reimbursements</button>
-<button type="button" id="viewPending" name="viewPending" onclick="sendAjax('pending', viewReimbursements);">View Pending Reimbursements</button>
-
+		<div class="form-group">
+			<label for="amount">Amount:</label> <input type="text"
+				class="form-control" id="amount" name="amount">
+		</div>
+		<div class="form-group">
+			<label for="imageLocation">Image Location:</label> <input type="text"
+				class="form-control" id="imageLocation" name="imageLocation">
+		</div>
+		<button type="submit" class="btn btn-default" id="submitRequests">Submit</button>
+	</form>
+	<form action="logout">
+		<button type="submit" class="btn btn-default" id="logout">Logout</button>
+	</form>
+	<button type="button" id="employeeInfo" name="employeeInfo"
+		onclick="sendAjax('info', viewInfo);">View Info</button>
+	<button type="button" id="viewResolved" name="viewResolved"
+		onclick="sendAjax('resolved', viewReimbursements);">View
+		Resolved Reimbursements</button>
+	<button type="button" id="viewPending" name="viewPending"
+		onclick="sendAjax('pending', viewReimbursements);">View
+		Pending Reimbursements</button>
+	<form action="update" method="post">
+		<label for="first">New First Name:</label> <input type="text"
+			class="form-control" id="first" name="first"> <label
+			for="last">New Last Name:</label> <input type="text"
+			class="form-control" id="last" name="last"> <label
+			for="email">New Email:</label> <input type="text"
+			class="form-control" id="email" name="email">
+		<button type="submit" class="btn btn-default" id="updateInfo"
+			name="updateInfo">Update Info</button>
+	</form>
+	
 </body>
 <script src="scripts/employee.js"></script>
 

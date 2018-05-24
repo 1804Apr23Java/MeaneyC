@@ -64,7 +64,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setInt(1, emp.employeeId);
 		ResultSet rs = pstmt.executeQuery();
 		List<Reimbursement> re = new ArrayList<Reimbursement>();
-		while(rs.next()) {
+		while (rs.next()) {
 			Reimbursement rem = new Reimbursement();
 			rem.reimbursementId = rs.getInt("REIMBURSEMENT_ID");
 			rem.amount = rs.getInt("AMOUNT");
@@ -91,9 +91,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	}
 
 	@Override
-	public boolean updateInformation(Employee emp) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateInformation(Employee emp) throws SQLException {
+		String sql = "Update employee set employee_first = ?, employee_last = ?, "
+				+ "employee_email = ? WHERE EMPLOYEE_ID = ?";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, emp.employeeFirst);
+		pstmt.setString(2, emp.employeeLast);
+		pstmt.setString(3, emp.employeeEmail);
+		pstmt.setInt(4, emp.employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next())
+			return true;
+		else
+			return false;
 	}
 
 	@Override
@@ -104,37 +114,38 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setString(1, username);
 		pstmt.setString(2, password);
 		ResultSet rs = pstmt.executeQuery();
-		//System.out.println("did the select work: "+rs.next());
+		// System.out.println("did the select work: "+rs.next());
 		int loginId;
 		int isManager;
-		if(rs.next()) {
+		if (rs.next()) {
 			loginId = rs.getInt("LOGIN_ID");
 			isManager = rs.getInt("ISMANAGER");
 			int id = 0;
-			if(isManager == 1) {
+			if (isManager == 1) {
 				String sql2 = "SELECT MANAGER_ID FROM MANAGER WHERE LOGIN_ID = ?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, loginId);
 				ResultSet rs2 = pstmt2.executeQuery();
-				if(rs2.next()) {
+				if (rs2.next()) {
 					id = rs2.getInt("MANAGER_ID");
 				}
 			} else {
-				System.out.println("loginId = "+loginId);
+				System.out.println("loginId = " + loginId);
 				String sql2 = "SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE LOGIN_ID = ?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, loginId);
 				ResultSet rs2 = pstmt2.executeQuery();
-				if(rs2.next()) {
+				if (rs2.next()) {
 					id = rs2.getInt("EMPLOYEE_ID");
 				}
 			}
-		int[] arr = new int[2];
-		arr[0] = id;
-		arr[1] = isManager;
-		return arr;
-		}return null;
-}
+			int[] arr = new int[2];
+			arr[0] = id;
+			arr[1] = isManager;
+			return arr;
+		}
+		return null;
+	}
 
 	@Override
 	public List<Reimbursement> viewPending(Employee emp) throws SQLException {
@@ -143,7 +154,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setInt(1, emp.employeeId);
 		ResultSet rs = pstmt.executeQuery();
 		List<Reimbursement> re = new ArrayList<Reimbursement>();
-		while(rs.next()) {
+		while (rs.next()) {
 			Reimbursement rem = new Reimbursement();
 			rem.reimbursementId = rs.getInt("REIMBURSEMENT_ID");
 			rem.amount = rs.getInt("AMOUNT");
@@ -152,6 +163,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			re.add(rem);
 		}
 		return re;
+	}
+
+	@Override
+	public boolean reset(String username) throws SQLException {
+		String sql = "INSERT INTO RESETS(USERNAME) VALUES(?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, username);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

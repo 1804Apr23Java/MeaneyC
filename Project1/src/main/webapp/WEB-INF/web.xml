@@ -96,4 +96,24 @@
     <servlet-name>PendingReimbursementServlet</servlet-name>
     <url-pattern>/pending</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateInformation</display-name>
+    <servlet-name>UpdateInformation</servlet-name>
+    <servlet-class>servlets.UpdateInformation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateInformation</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResetServlet</display-name>
+    <servlet-name>ResetServlet</servlet-name>
+    <servlet-class>servlets.ResetServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetServlet</servlet-name>
+    <url-pattern>/reset</url-pattern>
+  </servlet-mapping>
 </web-app>

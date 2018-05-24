@@ -35,13 +35,13 @@ public class submitReimbursement extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPut(HttpServletRequest request, HttpServletResponse response)
+	/*protected void doPut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		EmployeeDaoImpl edi = EmployeeDaoImpl
 				.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
 		ObjectMapper om = new ObjectMapper();
 		System.out.println(request.getAttributeNames());
-	}
+	}*/
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
