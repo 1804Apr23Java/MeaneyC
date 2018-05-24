@@ -42,15 +42,14 @@ public class ResetPassword extends HttpServlet {
 		int resetCheck = (Integer) request.getSession().getAttribute("resetCheck");
 		int userReset = Integer.parseInt(request.getParameter("passwordReset"));
 		PrintWriter pw = response.getWriter();
+		response.setContentType("text/html");
 		if (resetCheck == userReset) {
-			//pw.flush(); pw.
 			pw.println("</div>");
 			pw.println("<form action=\"password\" method=\"post\">");
 			pw.println("<label for=\"newPassword\">Password:</label>");
 			pw.println("<input type =\"text\" class=\"form-control\" id=\"newPassword\" name=\"newPassword\">");
+			pw.println("<button type=\"submit\" class=\"btn btn-default\" id=\"password\" name=\"password\">Submit</button>");
 			pw.println("</form>");
-			pw.println(
-					"<button type=\"submit\" class=\"btn btn-default\" id=\"change\" name=\"change\">Submit</button>");
 			pw.println("<a href=\"index\">Go back</a>");
 			pw.println("</body></html>");
 		} else {

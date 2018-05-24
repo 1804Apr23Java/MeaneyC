@@ -51,6 +51,7 @@ public class NewPasswordServlet extends HttpServlet {
 		}
 		if(didSetPassword) {
 			PrintWriter pw = response.getWriter();
+			response.setContentType("text/html");
 			pw.println("New password successfully created!");
 			pw.println("<a href=\"index\">Go back</a>");
 			pw.println("</body></html>");
