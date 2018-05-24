@@ -32,8 +32,8 @@ public class LogoutServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		HttpSession session = request.getSession(false);
 		if (session != null) {
-			session.setAttribute("employeeId", null);
-			session.setAttribute("managerId", null);
+			session.setAttribute("employeeId", "");
+			session.setAttribute("managerId", "");
 			session.invalidate();
 		}
 		pw.println("you are successfully logged out");

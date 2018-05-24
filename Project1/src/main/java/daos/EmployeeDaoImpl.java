@@ -48,7 +48,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public boolean submitReimbursementRequest(Reimbursement re) throws SQLException {
-		// try(Connection con = ConnectionUtil.getConnectionFromFile(is)){
 		String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, AMOUNT, STATE) VALUES(?, ?, ?, ?)";
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setInt(1, re.employeeId);
@@ -84,6 +83,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
 		}
+		con.close();
 		return re;
 	}
 
@@ -99,6 +99,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			emp.employeeLast = rs.getString("EMPLOYEE_LAST");
 			emp.employeeEmail = rs.getString("EMPLOYEE_EMAIL");
 		}
+		con.close();
 		return emp;
 	}
 
@@ -112,10 +113,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setString(3, emp.employeeEmail);
 		pstmt.setInt(4, emp.employeeId);
 		ResultSet rs = pstmt.executeQuery();
-		if (rs.next())
+		if (rs.next()) {
+			con.close();
 			return true;
-		else
+		} else {
+			con.close();
 			return false;
+		}
 	}
 
 	@Override
@@ -126,7 +130,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		pstmt.setString(1, username);
 		pstmt.setString(2, password);
 		ResultSet rs = pstmt.executeQuery();
-		// System.out.println("did the select work: "+rs.next());
 		int loginId;
 		int isManager;
 		if (rs.next()) {
@@ -142,7 +145,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 					id = rs2.getInt("MANAGER_ID");
 				}
 			} else {
-				System.out.println("loginId = " + loginId);
 				String sql2 = "SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE LOGIN_ID = ?";
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
 				pstmt2.setInt(1, loginId);
@@ -154,8 +156,10 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			int[] arr = new int[2];
 			arr[0] = id;
 			arr[1] = isManager;
+			con.close();
 			return arr;
 		}
+		con.close();
 		return null;
 	}
 
@@ -174,6 +178,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
 		}
+		con.close();
 		return re;
 	}
 
@@ -234,10 +239,13 @@ public class EmployeeDaoImpl implements EmployeeDao {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							con.close();
 							return resetId;
 						}
-					} else
+					} else {
+						con.close();
 						return 0;
+					}
 				} else {
 					String sql3 = "SELECT EMPLOYEE_EMAIL FROM EMPLOYEE WHERE LOGIN_ID = ?";
 					PreparedStatement pstmt3 = con.prepareStatement(sql3);
@@ -282,17 +290,23 @@ public class EmployeeDaoImpl implements EmployeeDao {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+							con.close();
 							return resetId;
 						} else {
+							con.close();
 							return 0;
 						}
 
-					} else
+					} else {
+						con.close();
 						return 0;
+					}
 				}
 			}
+			con.close();
 			return 0;
 		} else {
+			con.close();
 			return 0;
 		}
 	}

@@ -58,6 +58,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
 		}
+		con.close();
 		return re;
 	}
 
@@ -77,6 +78,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
 		}
+		con.close();
 		return re;
 	}
 
@@ -94,6 +96,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			emp.employeeId = rs.getInt("EMPLOYEE_ID");
 			empList.add(emp);
 		}
+		con.close();
 		return empList;
 	}
 
@@ -123,8 +126,10 @@ public class ManagerDaoImpl implements ManagerDao {
 			pstmt.setInt(1, 1);
 		else if (approve.equals("D")) {
 			pstmt.setInt(1, 2);
-		} else
+		} else {
+			con.close();
 			return false;
+		}
 		pstmt.setInt(2, managerId);
 		pstmt.setInt(3, reqId);
 		ResultSet rs = pstmt.executeQuery();
@@ -161,9 +166,12 @@ public class ManagerDaoImpl implements ManagerDao {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			con.close();
 			return true;
-		} else
+		} else {
+			con.close();
 			return false;
+		}
 	}
 
 	@Override
@@ -183,6 +191,7 @@ public class ManagerDaoImpl implements ManagerDao {
 			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
 			re.add(rem);
 		}
+		con.close();
 		return re;
 	}
 
@@ -210,9 +219,11 @@ public class ManagerDaoImpl implements ManagerDao {
 					pstmt3.setInt(4, loginId);
 					ResultSet rs3 = pstmt3.executeQuery();
 					if (rs3.next()) {
+						con.close();
 						return true;
 					} else
-						return false;
+						con.close();
+					return false;
 				} else {
 					String sql3 = "INSERT INTO MANAGER(MANAGER_FIRST, MANAGER_LAST, MANAGER_EMAIL, LOGIN_ID) VALUES (?, ?, ?, ?)";
 					PreparedStatement pstmt3 = con.prepareStatement(sql3);
@@ -252,14 +263,21 @@ public class ManagerDaoImpl implements ManagerDao {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						con.close();
 						return true;
-					} else
+					} else {
+						con.close();
 						return false;
+					}
 				}
-			} else
+			} else {
+				con.close();
 				return false;
-		} else
+			}
+		} else {
+			con.close();
 			return false;
+		}
 
 	}
 }
