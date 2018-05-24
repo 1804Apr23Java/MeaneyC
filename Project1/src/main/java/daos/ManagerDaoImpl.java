@@ -189,4 +189,110 @@ public class ManagerDaoImpl implements ManagerDao {
 		return re;
 	}
 
+	@Override
+	public boolean createEmployee(Employee emp, String username, String password, int isManager) throws SQLException {
+		String sql = "INSERT INTO LOGIN(USERNAME, PASSWORD, ISMANAGER) VALUES(?, ?, ?)";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, username);
+		pstmt.setString(2, password);
+		pstmt.setInt(3, isManager);
+		ResultSet rs = pstmt.executeQuery();
+		if (rs.next()) {
+			String sql2 = "SELECT LOGIN_ID FROM LOGIN WHERE USERNAME = ?";
+			PreparedStatement pstmt2 = con.prepareStatement(sql2);
+			pstmt2.setString(1, username);
+			ResultSet rs2 = pstmt2.executeQuery();
+			if (rs2.next()) {
+				int loginId = rs2.getInt("LOGIN_ID");
+				if (isManager == 0) {
+					String sql3 = "INSERT INTO EMPLOYEE(EMPLOYEE_FIRST, EMPLOYEE_LAST, EMPLOYEE_EMAIL, LOGIN_ID) VALUES (?, ?, ?, ?)";
+					PreparedStatement pstmt3 = con.prepareStatement(sql3);
+					pstmt3.setString(1, emp.employeeFirst);
+					pstmt3.setString(2, emp.employeeLast);
+					pstmt3.setString(3, emp.employeeEmail);
+					pstmt3.setInt(4, loginId);
+					ResultSet rs3 = pstmt3.executeQuery();
+					if (rs3.next()) {
+						Properties properties = System.getProperties();
+						properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+						properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+						properties.setProperty("mail.smtp.socketFactory.fallback", "false");
+						properties.setProperty("mail.smtp.port", "465");
+						properties.setProperty("mail.smtp.socketFactory.port", "465");
+						properties.put("mail.smtp.auth", "true");
+						properties.put("mail.debug", "true");
+						properties.put("mail.store.protocol", "pop3");
+						properties.put("mail.transport.protocol", "smtp");
+						try {
+							Session session = Session.getDefaultInstance(properties, new Authenticator() {
+								protected PasswordAuthentication getPasswordAuthentication() {
+									return new PasswordAuthentication("collinmeaney375@gmail.com", "Windwaker1");
+								}
+							});
+							MimeMessage message = new MimeMessage(session);
+							message.setFrom(new InternetAddress("collinmeaney375@gmail.com"));
+							message.setRecipients(Message.RecipientType.TO,
+									InternetAddress.parse(emp.employeeEmail, false));
+							message.setSubject("Account Created!");
+							message.setText("Your account: " + username + " has password: " + password);
+							Transport.send(message);
+						} catch (AddressException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (MessagingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return true;
+					} else
+						return false;
+				} else {
+					String sql3 = "INSERT INTO MANAGER(MANAGER_FIRST, MANAGER_LAST, MANAGER_EMAIL, LOGIN_ID) VALUES (?, ?, ?, ?)";
+					PreparedStatement pstmt3 = con.prepareStatement(sql3);
+					pstmt3.setString(1, emp.employeeFirst);
+					pstmt3.setString(2, emp.employeeLast);
+					pstmt3.setString(3, emp.employeeEmail);
+					pstmt3.setInt(4, loginId);
+					ResultSet rs3 = pstmt3.executeQuery();
+					if (rs3.next()) {
+						Properties properties = System.getProperties();
+						properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+						properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+						properties.setProperty("mail.smtp.socketFactory.fallback", "false");
+						properties.setProperty("mail.smtp.port", "465");
+						properties.setProperty("mail.smtp.socketFactory.port", "465");
+						properties.put("mail.smtp.auth", "true");
+						properties.put("mail.debug", "true");
+						properties.put("mail.store.protocol", "pop3");
+						properties.put("mail.transport.protocol", "smtp");
+						try {
+							Session session = Session.getDefaultInstance(properties, new Authenticator() {
+								protected PasswordAuthentication getPasswordAuthentication() {
+									return new PasswordAuthentication("collinmeaney375@gmail.com", "Windwaker1");
+								}
+							});
+							MimeMessage message = new MimeMessage(session);
+							message.setFrom(new InternetAddress("collinmeaney375@gmail.com"));
+							message.setRecipients(Message.RecipientType.TO,
+									InternetAddress.parse(emp.employeeEmail, false));
+							message.setSubject("Account Created!");
+							message.setText("Your account: " + username + " has password: " + password);
+							Transport.send(message);
+						} catch (AddressException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (MessagingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return true;
+					} else
+						return false;
+				}
+			} else
+				return false;
+		} else
+			return false;
+
+	}
 }

@@ -41,19 +41,29 @@ public class ResetServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		EmployeeDaoImpl edi = EmployeeDaoImpl
 				.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
-		boolean didReset = false;
-		String username = request.getParameter("username");
+		int resetCheck = 0;
+		String username = request.getParameter("username2");
 		try {
-			didReset = edi.reset(username);
+			resetCheck = edi.reset(username);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(didReset) {
+		if(resetCheck != 0) {
+			request.getSession().setAttribute("resetCheck", resetCheck);
+			request.getSession().setAttribute("username", username);
+
+			//request.setAttribute("resetCheck", resetCheck);
+			//request.setAttribute("username", username);
 			response.setContentType("text/html");
 			PrintWriter pw = response.getWriter();
 			pw.println("New password successfully requested!");
 			pw.println("</div>");
+			pw.println("<form action=\"change\" method=\"post\">");
+			pw.println("<label for=\"passwordReset\">Code:</label>");
+			pw.println("<input type =\"text\" class=\"form-control\" id=\"passwordReset\" name=\"passwordReset\">");
+			pw.println("<button type=\"submit\" class=\"btn btn-default\" id=\"change\" name=\"change\">Submit</button>");
+			pw.println("</form>");
 			pw.println("<a href=\"index\">Go back</a>");
 			pw.println("</body></html>");
 		}

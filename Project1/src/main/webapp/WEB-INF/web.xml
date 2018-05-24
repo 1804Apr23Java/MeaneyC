@@ -166,4 +166,34 @@
     <servlet-name>AlterServlet</servlet-name>
     <url-pattern>/alter</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RegisterServlet</display-name>
+    <servlet-name>RegisterServlet</servlet-name>
+    <servlet-class>servlets.RegisterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResetPassword</display-name>
+    <servlet-name>ResetPassword</servlet-name>
+    <servlet-class>servlets.ResetPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetPassword</servlet-name>
+    <url-pattern>/change</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewPasswordServlet</display-name>
+    <servlet-name>NewPasswordServlet</servlet-name>
+    <servlet-class>servlets.NewPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewPasswordServlet</servlet-name>
+    <url-pattern>/password</url-pattern>
+  </servlet-mapping>
 </web-app>

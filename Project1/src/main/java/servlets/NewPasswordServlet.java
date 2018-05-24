@@ -2,23 +2,25 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import daos.EmployeeDaoImpl;
 
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class NewPasswordServlet
  */
-public class LogoutServlet extends HttpServlet {
+public class NewPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public NewPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,26 +30,32 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-		PrintWriter pw = response.getWriter();
-		HttpSession session = request.getSession(false);
-		if (session != null) {
-			session.setAttribute("employeeId", null);
-			session.setAttribute("managerId", null);
-			session.invalidate();
-		}
-		pw.println("you are successfully logged out");
-		pw.println("</div>");
-		pw.println("<a href=\"index\">Go back</a>");
-		pw.println("</body></html>");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		EmployeeDaoImpl edi = EmployeeDaoImpl
+				.getEmployeeDaoImpl(getServletContext().getResourceAsStream("connection.properties"));
+		String username = (String) request.getSession().getAttribute("username");
+		String password = request.getParameter("newPassword");
+		boolean didSetPassword = false;
+		try {
+			didSetPassword = edi.setPassword(username, password);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(didSetPassword) {
+			PrintWriter pw = response.getWriter();
+			pw.println("New password successfully created!");
+			pw.println("<a href=\"index\">Go back</a>");
+			pw.println("</body></html>");
+		}
+		
 	}
 
 }

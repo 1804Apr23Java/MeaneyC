@@ -13,6 +13,7 @@ public interface EmployeeDao {
 	public List<Reimbursement> viewPending(Employee emp) throws SQLException;
 	public Employee viewInformation(Employee emp) throws SQLException;
 	public boolean updateInformation(Employee emp) throws SQLException;
-	public boolean reset(String username) throws SQLException;
+	public int reset(String username) throws SQLException;
+	public boolean setPassword(String username, String password) throws SQLException;
 	
 }
