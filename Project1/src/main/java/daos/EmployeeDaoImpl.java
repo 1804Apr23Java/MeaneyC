@@ -37,11 +37,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	@Override
 	public boolean submitReimbursementRequest(Reimbursement re) throws SQLException {
 		// try(Connection con = ConnectionUtil.getConnectionFromFile(is)){
-		String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, STATE) VALUES(?, ?, ?)";
+		String sql = "INSERT INTO REIMBURSEMENTS(EMPLOYEE_ID, IMAGE_LOCATION, AMOUNT, STATE) VALUES(?, ?, ?, ?)";
 		PreparedStatement statement = con.prepareStatement(sql);
 		statement.setInt(1, re.employeeId);
 		statement.setString(2, re.imageLocation);
-		statement.setInt(3, 0);
+		statement.setInt(3, re.amount);
+		statement.setInt(4, 0);
 		ResultSet rs = statement.executeQuery();
 		while (rs.next()) {
 			con.close();
@@ -136,9 +137,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
 }
 
 	@Override
-	public List<Reimbursement> viewPending(Employee emp) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Reimbursement> viewPending(Employee emp) throws SQLException {
+		String sql = "SELECT * FROM REIMBURSEMENTS WHERE EMPLOYEE_ID = ? AND STATE = 0";
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, emp.employeeId);
+		ResultSet rs = pstmt.executeQuery();
+		List<Reimbursement> re = new ArrayList<Reimbursement>();
+		while(rs.next()) {
+			Reimbursement rem = new Reimbursement();
+			rem.reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+			rem.amount = rs.getInt("AMOUNT");
+			rem.imageLocation = rs.getString("IMAGE_LOCATION");
+			rem.resolvingManager = rs.getInt("RESOLVING_MANAGER");
+			re.add(rem);
+		}
+		return re;
 	}
 
 }

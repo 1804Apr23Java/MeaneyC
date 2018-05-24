@@ -86,4 +86,14 @@
     <servlet-name>ResolvedReimbursementsServlet</servlet-name>
     <url-pattern>/resolved</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PendingReimbursementServlet</display-name>
+    <servlet-name>PendingReimbursementServlet</servlet-name>
+    <servlet-class>servlets.PendingReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PendingReimbursementServlet</servlet-name>
+    <url-pattern>/pending</url-pattern>
+  </servlet-mapping>
 </web-app>
