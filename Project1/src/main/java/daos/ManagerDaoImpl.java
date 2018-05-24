@@ -219,11 +219,42 @@ public class ManagerDaoImpl implements ManagerDao {
 					pstmt3.setInt(4, loginId);
 					ResultSet rs3 = pstmt3.executeQuery();
 					if (rs3.next()) {
+						Properties properties = System.getProperties();
+						properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+						properties.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+						properties.setProperty("mail.smtp.socketFactory.fallback", "false");
+						properties.setProperty("mail.smtp.port", "465");
+						properties.setProperty("mail.smtp.socketFactory.port", "465");
+						properties.put("mail.smtp.auth", "true");
+						properties.put("mail.debug", "true");
+						properties.put("mail.store.protocol", "pop3");
+						properties.put("mail.transport.protocol", "smtp");
+						try {
+							Session session = Session.getDefaultInstance(properties, new Authenticator() {
+								protected PasswordAuthentication getPasswordAuthentication() {
+									return new PasswordAuthentication("collinmeaney375@gmail.com", "Windwaker1");
+								}
+							});
+							MimeMessage message = new MimeMessage(session);
+							message.setFrom(new InternetAddress("collinmeaney375@gmail.com"));
+							message.setRecipients(Message.RecipientType.TO,
+									InternetAddress.parse(emp.employeeEmail, false));
+							message.setSubject("Account Created!");
+							message.setText("Your account: " + username + " has password: " + password);
+							Transport.send(message);
+						} catch (AddressException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (MessagingException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						con.close();
 						return true;
-					} else
+					} else {
 						con.close();
-					return false;
+						return false;
+					}
 				} else {
 					String sql3 = "INSERT INTO MANAGER(MANAGER_FIRST, MANAGER_LAST, MANAGER_EMAIL, LOGIN_ID) VALUES (?, ?, ?, ?)";
 					PreparedStatement pstmt3 = con.prepareStatement(sql3);
